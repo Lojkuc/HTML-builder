@@ -9,13 +9,20 @@ const rl = readline.createInterface({
     prompt: 'Введите что-нибудь..'
 });
 rl.prompt();
+rl.on('SIGINT', () => {
+  console.log("\nBye human");
+  rl.close()
+});
 rl.on('line', (input) => {
-  rl.prompt();
   if(input == "exit"){
+    console.log("Bye human");
     rl.close()
   }
   else{
+    rl.prompt();
     writeStream.write(`\n${input}`)
   }
 });
+
+
 
